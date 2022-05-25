@@ -1,1 +1,1 @@
-This repository contains 0x00-shell_basics projects
+This repository will be used for shell basics projects
