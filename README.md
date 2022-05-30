@@ -1,1 +1,1 @@
-This repository will be used for shell basics projects
+This repository will be used for alx system engineering devops projects
