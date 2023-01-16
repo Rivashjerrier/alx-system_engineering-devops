@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-""" 
-Returns information about employee TODO list progress
-using REST API for a given employee ID
+"""
+    This module requests data from a RESTful API
+    (https://jsonplaceholder.typicode.com/)
+    and returns information about an employees tasks
 """
 
 import requests as req
