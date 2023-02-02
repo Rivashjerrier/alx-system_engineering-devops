@@ -16,7 +16,7 @@ def top_ten(subreddit):
     }
 
     params = {
-       'limil': 10
+       'limit': 10
     }
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
