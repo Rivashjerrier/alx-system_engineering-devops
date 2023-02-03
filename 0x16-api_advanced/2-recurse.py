@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 recursive function that queries the Reddit API and returns a list containing
-he titles of all hot articles for a given subreddit.
+the titles of all hot articles for a given subreddit.
 """
 import requests
 
@@ -27,11 +27,13 @@ def recurse(subreddit, hot_list=[], after="", num=0):
                        allow_redirects=False)
     if response.status_code == 404:
         return None
+
     dic = response.json().get("data")
     after = dic.get("after")
     num += dic.get("dist")
     for n in dic.get("children"):
         hot_list.append(n.get("data").get("title"))
+
     if after is not None
         return recurse(subreddit, hot_list, after, num)
     return hot_list
