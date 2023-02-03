@@ -32,12 +32,12 @@ def recurse(subreddit, hot_list=[], after="", num=0):
                        headers=headers,
                        params=params,
                        allow_redirects=False)
-    if response.status_code != 200:
+    if res.status_code != 200:
         return None
     dict = res.json()
     articles = dict['data']['children']
     title(list, articles)
-    after = dic['data']['after']
+    after = dict['data']['after']
     if not after:
         return list
     return recurse(subreddit, list=list, after=after)
