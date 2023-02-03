@@ -28,12 +28,12 @@ def recurse(subreddit, hot_list=[], after="", num=0):
     if response.status_code == 404:
         return None
 
-    dic = response.json().get("data")
-    after = dic.get("after")
-    num += dic.get("dist")
-    for n in dic.get("children"):
-        hot_list.append(n.get("data").get("title"))
+    dic = response.json().get('data')
+    after = dic.get('after')
+    num += dic.get('dist')
+    for n in dic.get('children'):
+        hot_list.append(n.get('data').get('title'))
 
-    if after is not None
+    if after is not None:
         return recurse(subreddit, hot_list, after, num)
     return hot_list
