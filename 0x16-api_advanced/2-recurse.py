@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-
 """
-Recursive function that queries the Reddit API and returns a list
+recursive function that queries the Reddit API and returns a list
 containing the titles of all hot articles for a given subreddit
 """
 import requests
@@ -9,7 +8,7 @@ import sys
 
 
 def recurse(subreddit, hot_list=[], after="", num=0):
-    """Queries the Reddit API and returns a list containing the title"""
+    """ Queries the Reddit API and returns a list containing the title """
     user_agent = 'Mozilla/5.0'
 
     headers = {
@@ -34,7 +33,6 @@ def recurse(subreddit, hot_list=[], after="", num=0):
     num += dic.get("dist")
     for n in dic.get("children"):
         hot_list.append(n.get("data").get("title"))
-
     if after is not None
         return recurse(subreddit, hot_list, after, num)
     return hot_list
