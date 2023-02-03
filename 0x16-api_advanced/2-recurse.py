@@ -6,13 +6,13 @@ the titles of all hot articles for a given subreddit.
 import requests
 
 
-def title(list, articles):
+def article_title(hot_list, hot_articles):
     """ Store articles in a list """
-    if len(articles) == 0:
+    if len(hot_articles) == 0:
         return
-    list.append(articles[0]['data']['title'])
-    articles.pop(0)
-    title(list, articles)
+    hot_list.append(hot_articles[0]['data']['title'])
+    hot_articles.pop(0)
+    article_title(hot_list, hot_articles)
 
 
 def recurse(subreddit, hot_list=[], after="", num=0):
@@ -34,10 +34,11 @@ def recurse(subreddit, hot_list=[], after="", num=0):
                        allow_redirects=False)
     if res.status_code != 200:
         return None
-    dict = res.json()
-    articles = dict['data']['children']
-    title(list, articles)
-    after = dict['data']['after']
+
+    dic = res.json()
+    hot_articles = dic['data']['children']
+    article_title(hot_list, hot_articles)
+    after = dic['data']['after']
     if not after:
-        return list
-    return recurse(subreddit, list=list, after=after)
+        return hot_list
+    return recurse(subreddit, hot_list=hot_list, after=after)
