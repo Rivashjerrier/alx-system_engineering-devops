@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-"""Recursive function queries Reddit API and returns list containing titles"""
+"""
+recursive function that queries the Reddit API and returns a list containing
+he titles of all hot articles for a given subreddit.
+"""
 import requests
-import sys
 
 
 def recurse(subreddit, hot_list=[], after="", num=0):
-    """Queries the Reddit API and returns a list containing the title."""
+    """ Queries Reddit API returns a list containing the title """
     user_agent = 'Mozilla/5.0'
 
     headers = {
