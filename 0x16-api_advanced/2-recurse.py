@@ -15,9 +15,7 @@ def recurse(subreddit, hot_list=[], after="", num=0):
     }
 
     params = {
-       'after': after,
-       'num': num,
-       'limit': 100
+       'after': after
     }
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
