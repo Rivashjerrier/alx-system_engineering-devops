@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script installs Nginx, starts the service, and configures it to listen on port 80 of all active IPv4 IPs
+sed -i '/listen [::]:80 default_server;/ a listen 80 default_server;' /etc/nginx/sites-available/default
+service nginx start
