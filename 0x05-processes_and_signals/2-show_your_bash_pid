@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# script that displays lines containing the bash, from previous exercise command
+ps -aux | grep bash
