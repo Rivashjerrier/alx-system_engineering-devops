@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# makes previous task fix short and sweet.
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+sudo rm -f /var/run/nginx.pid
