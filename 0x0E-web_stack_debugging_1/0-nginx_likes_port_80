@@ -1,6 +1,31 @@
 #!/usr/bin/env bash
-# This script installs Nginx, starts the service, and configures it to listen on port 80 of all active IPv4 IPs
-sed -i "s/listen 8080 default_server;/listen 80 default_server;/" /etc/nginx/sites-enabled/default
-sed -i "s/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server;/" /etc/nginx/sites-enabled/default
-sed -i "s/ ipv6only=on//" /etc/nginx/sites-available/default
-service nginx restart
+# This script configures Nginx to listen on port 80 of all the server's active IPv4 IPs
+
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
+cat > /tmp/nginx.conf << EOF
+worker_processes auto;
+pid /run/nginx.pid;
+
+events {
+    worker_connections 768;
+}
+
+http {
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+    gzip on;
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        server_name _;
+        location / {
